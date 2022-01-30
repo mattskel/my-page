@@ -29,3 +29,10 @@ For some reason to add to the start script the command needs to be "webpack serv
 ** Rendering Elements **
 In practice most React apps only call ReactDOM.render() once.
 React only updates when necessary. Only the node whose contects have changed gets updated.
+
+** Componenets and props **
+Components accecpt arbitrary inputs called props and return React elements describing what should appear.
+Function and class componenets both have the same additional features.
+Compartmentalising components into bite size peaces is easier to manage.
+If part of your component is used several times, or is complex, it can be extracted to a component.
+Props are read only. All react components must act like pure functions
