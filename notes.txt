@@ -26,3 +26,6 @@ To start server run
 $webpack-dev-server --mode development
 For some reason to add to the start script the command needs to be "webpack serve --mode development"
 
+** Rendering Elements **
+In practice most React apps only call ReactDOM.render() once.
+React only updates when necessary. Only the node whose contects have changed gets updated.
