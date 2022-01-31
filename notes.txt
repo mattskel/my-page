@@ -47,3 +47,9 @@ Component state is like an additional water source that joins it at an arbitrary
 ** Preventing a component from rendering **
 To hide a component, return null when rendering
 
+** Keys **
+Keys help react identify which items have changed
+If you don't have stable ids, you may use the item index (not recommended)
+Keys need only be unique amongst siblings within arrays
+Keys serve as a hint to react but they don't get passed to your components.
+If you need the key value pass it explicitly as a prop with a different name.
