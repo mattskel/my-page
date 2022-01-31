@@ -36,3 +36,10 @@ Function and class componenets both have the same additional features.
 Compartmentalising components into bite size peaces is easier to manage.
 If part of your component is used several times, or is complex, it can be extracted to a component.
 Props are read only. All react components must act like pure functions
+
+** The data flows down **
+State is called local or encapsulated. It is only accesible to the component that owns and sets it.
+The child doesn't know from what part of the parent the props came.
+This is called top-down or undirectional data flow.
+Think of the component tree as a waterfall of props. 
+Component state is like an additional water source that joins it at an arbitrary point but also flows down.
