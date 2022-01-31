@@ -43,3 +43,7 @@ The child doesn't know from what part of the parent the props came.
 This is called top-down or undirectional data flow.
 Think of the component tree as a waterfall of props. 
 Component state is like an additional water source that joins it at an arbitrary point but also flows down.
+
+** Preventing a component from rendering **
+To hide a component, return null when rendering
+
