@@ -3,83 +3,52 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import App from "./App.js";
 // ReactDOM.render(<App />, document.getElementById("root"));
-
-function LoginButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Login
-    </button>
-  )
-}
-
-function LogoutButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Logout
-    </button>
-  )
-}
-
-function UserGreeting(props) {
-  return <h1>Welcome back!</h1>;
-}
-
-function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
-}
-
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn
-  if (isLoggedIn) return <UserGreeting />;
-
-  return <GuestGreeting />;
-}
-class LoginControl extends React.Component {
+class MyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isLoggedIn: false};
+    // this.state = {value: ''};
+    // this.state = {value: 'Write an essay about your favourite DOM element'};
+    this.state = { value: 'coconut' };
 
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false})
+  handleSubmit(event) {
+    // alert('A name was submitted: ' + this.state.value);
+    // alert('An essay was submitted: ' + this.state.value);
+    alert('Your favourite flavour is: ' + this.state.value);
+    event.preventDefault();
   }
+
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    const button = (isLoggedIn)
-      ? <LogoutButton onClick={this.handleLogoutClick} />
-      : <LoginButton onClick={this.handleLoginClick} />
     return (
-      <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-        {button}
-      </div>
-    )
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          {/* Name:
+          <input type="text" name="name" value={this.state.value} onChange={this.handleChange} /> */}
+          {/* Essay:
+          <textarea name="name" value={this.state.value} onChange={this.handleChange}/> */}
+          Pick your favourite flavour:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option selected value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
   }
 }
 
-function ListItem(props) {
-  return <li>{props.value}</li>;
-}
+ReactDOM.render(<MyForm />, document.getElementById('root'));
 
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) => 
-    <ListItem key={number.toString()} value={number} />
-  );
-
-  return <ul>{listItems}</ul>;
-}
-
-
-const numbers = [1,2,3,4,5];
-ReactDOM.render(<NumberList numbers={numbers} />, document.getElementById('root'));
-
+// ReactDOM.render(<NumberList numbers={numbers} />, document.getElementById('root'));
 // ReactDOM.render(<LoginControl />, document.getElementById('root'));
