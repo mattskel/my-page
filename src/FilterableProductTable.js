@@ -10,11 +10,13 @@ class SearchBar extends Component {
         <input 
           type="text" 
           placeholder="Search..." 
-          />
+          value={filterText}
+          onChange={this.props.handleFilterTextChange}/>
         <p>
           <input 
             type="checkbox" 
-            />
+            checked={inStockOnly}
+            onChange={this.props.handleInStockChange}/>
           {' '}
           Only show products in stock
         </p>
@@ -56,7 +58,7 @@ class ProductTable extends Component {
 
     this.props.products
       .filter((product) => !inStockOnly || product.stocked)
-      .filter((product) => !filterText || product.name.indexOf(filterText) === -1)
+      .filter((product) => !filterText || product.name.indexOf(filterText) !== -1)
       .forEach((product) => {
         if (product.category !== lastCategory) {
           rows.push(
@@ -93,23 +95,34 @@ class FilterableProductTable extends Component {
     super(props);
     this.state = {
       inStockOnly: false, 
-      filterText: ''};
+      filterText: ''
+    };
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
   }
 
-  // handleChange(event) {
-  //   this.setState({
-  //     ...this.state,
-  //     searchText: event.target.value
-  //   })
-  // }
+  handleFilterTextChange(event) {
+    this.setState({
+      ...this.state,
+      filterText: event.target.value
+    })
+  }
+
+  handleInStockChange(event) {
+    this.setState({
+      ...this.state,
+      inStockOnly: event.target.checked
+    })
+  }
 
   render() {
     return(
       <div className="FilterableProductTable">
-        {/* <h1> Hello, World! </h1> */}
         <SearchBar 
           filterText={this.state.filterText}
-          inStockOnly={this.state.inStockOnly}/>
+          inStockOnly={this.state.inStockOnly}
+          handleFilterTextChange={this.handleFilterTextChange}
+          handleInStockChange={this.handleInStockChange}/>
         <ProductTable 
           products={this.props.products}
           filterText={this.state.filterText}
